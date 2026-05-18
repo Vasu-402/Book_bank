@@ -51,17 +51,17 @@ export default function Books() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-slate-900">
       <div className="flex flex-col md:flex-row gap-8">
         {/* Sidebar Filters */}
         <div className="w-full md:w-64 flex-shrink-0">
-          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-24">
+          <div className="bg-white/95 p-6 rounded-xl shadow-sm ring-1 ring-slate-200 sticky top-24">
             <div className="flex items-center gap-2 font-bold text-lg mb-6 border-b pb-4">
               <Filter className="w-5 h-5" /> Filters
             </div>
             
             <div className="mb-6">
-              <h3 className="font-semibold mb-3 text-gray-700">Book Type</h3>
+              <h3 className="font-semibold mb-3 text-slate-700">Book Type</h3>
               <div className="space-y-2">
                 {['ALL', 'NEW', 'SECOND_HAND'].map(type => (
                   <label key={type} className="flex items-center gap-2 cursor-pointer">
@@ -72,7 +72,7 @@ export default function Books() {
                       onChange={() => setFilters({...filters, type})}
                       className="text-primary-600 focus:ring-primary-500"
                     />
-                    <span className="text-gray-700">
+                      <span className="text-slate-700">
                       {type === 'ALL' ? 'All Books' : type === 'NEW' ? 'New Books' : 'Second Hand'}
                     </span>
                   </label>
@@ -81,7 +81,7 @@ export default function Books() {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-3 text-gray-700">Category</h3>
+                <h3 className="font-semibold mb-3 text-slate-700">Category</h3>
               <div className="space-y-2 max-h-60 overflow-y-auto">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input 
@@ -91,7 +91,7 @@ export default function Books() {
                     onChange={() => setFilters({...filters, categoryId: 'ALL'})}
                     className="text-primary-600 focus:ring-primary-500"
                   />
-                  <span className="text-gray-700">All Categories</span>
+                    <span className="text-slate-700">All Categories</span>
                 </label>
                 {categories.map(category => (
                   <label key={category.id} className="flex items-center gap-2 cursor-pointer">
@@ -102,7 +102,7 @@ export default function Books() {
                       onChange={() => setFilters({...filters, categoryId: category.id.toString()})}
                       className="text-primary-600 focus:ring-primary-500"
                     />
-                    <span className="text-gray-700">{category.name}</span>
+                    <span className="text-slate-700">{category.name}</span>
                   </label>
                 ))}
               </div>
@@ -113,7 +113,7 @@ export default function Books() {
         {/* Book Grid */}
         <div className="flex-grow">
           {loading ? (
-            <div className="flex justify-center items-center h-64">
+              <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
             </div>
           ) : filteredBooks.length > 0 ? (
@@ -123,9 +123,9 @@ export default function Books() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 bg-white rounded-xl shadow-sm border border-gray-100">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">No books found</h3>
-              <p className="text-gray-500">Try adjusting your filters to see more results.</p>
+            <div className="text-center py-20 bg-white/95 rounded-xl shadow-sm ring-1 ring-slate-200">
+              <h3 className="text-xl font-bold text-slate-900 mb-2">No books found</h3>
+              <p className="text-slate-500">Try adjusting your filters to see more results.</p>
             </div>
           )}
         </div>

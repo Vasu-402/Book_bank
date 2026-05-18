@@ -1,13 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
-import useCartStore from '../store/useCartStore';
-import { BookOpen, LogOut, User as UserIcon, ShoppingCart } from 'lucide-react';
+import { BookOpen, LogOut, Upload } from 'lucide-react';
 
 export default function Navbar() {
   const { user, logout } = useAuthStore();
-  const { cart } = useCartStore();
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -27,30 +24,16 @@ export default function Navbar() {
           </div>
           <div className="flex items-center space-x-6">
             <Link to="/books" className="text-gray-600 hover:text-primary-600 font-medium">Browse</Link>
-            
-            <Link to="/cart" className="relative text-gray-600 hover:text-primary-600">
-              <ShoppingCart className="w-6 h-6" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                  {cartCount}
-                </span>
-              )}
+            <Link to={user ? '/sell' : '/login'} className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 font-medium text-white hover:bg-primary-700 transition">
+              <Upload className="w-4 h-4" /> Sell Book
             </Link>
 
             {user ? (
-              <>
-                <Link to="/dashboard" className="text-gray-600 hover:text-primary-600 font-medium flex items-center gap-1">
-                  <UserIcon className="w-4 h-4" /> Dashboard
-                </Link>
-                <button onClick={handleLogout} className="flex items-center gap-1 text-gray-600 hover:text-red-600 font-medium">
-                  <LogOut className="w-4 h-4" /> Logout
-                </button>
-              </>
+              <button onClick={handleLogout} className="flex items-center gap-1 text-gray-600 hover:text-red-600 font-medium">
+                <LogOut className="w-4 h-4" /> Logout
+              </button>
             ) : (
-              <>
-                <Link to="/login" className="text-gray-600 hover:text-primary-600 font-medium">Login</Link>
-                <Link to="/register" className="bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition">Sign Up</Link>
-              </>
+              <Link to="/login" className="text-gray-600 hover:text-primary-600 font-medium">Login</Link>
             )}
           </div>
         </div>

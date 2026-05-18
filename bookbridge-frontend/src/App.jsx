@@ -8,15 +8,16 @@ import Register from './pages/Register';
 import Books from './pages/Books';
 import BookDetails from './pages/BookDetails';
 import Dashboard from './pages/Dashboard';
+import SellBook from './pages/SellBook';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col text-slate-900">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow bg-transparent">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -24,6 +25,7 @@ function App() {
             <Route path="/books" element={<Books />} />
             <Route path="/books/:id" element={<BookDetails />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/sell" element={<SellBook />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
